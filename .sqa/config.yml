@@ -1,0 +1,62 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-reporting-cookiecutter:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-reporting-cookiecutter.git
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.8
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/EOSC-synergy/sqaaas-reporting-cookiecutter git:
+        commands:
+        - /usr/bin/env sh .sqa/script.foggy-pink-retriever.sh
+        container: qc.acc_tacky-ecru-eel
+  QC.Doc:
+    repos:
+      github.com/EOSC-synergy/sqaaas-reporting-cookiecutter find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.shabby-thistle-dachshund.sh
+        container: qc.doc_geeky-bistre-ibis
+      github.com/EOSC-synergy/sqaaas-reporting-cookiecutter git:
+        commands:
+        - /usr/bin/env sh .sqa/script.frumpy-asparagus-swan.sh
+        container: qc.doc_sickly-scarlet-reindeer
+      github.com/EOSC-synergy/sqaaas-reporting-cookiecutter markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.lumpy-grey-cow.sh
+        container: qc.doc_gamy-taupe-tarantula
+  QC.Lic:
+    repos:
+      github.com/EOSC-synergy/sqaaas-reporting-cookiecutter licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.frumpy-silver-shark.sh
+        container: qc.lic_wiggy-amaranth-dogfish
+  QC.Sec:
+    repos:
+      github.com/EOSC-synergy/sqaaas-reporting-cookiecutter bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.jumpy-sangria-harrier.sh
+        container: qc.sec_flaky-linen-buffalo
+  QC.Sty:
+    repos:
+      github.com/EOSC-synergy/sqaaas-reporting-cookiecutter flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.cloudy-charcoal-turtle.sh
+        container: qc.sty_fuzzy-white-coyote
+      github.com/EOSC-synergy/sqaaas-reporting-cookiecutter jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.lumpy-rose-mongrel.sh
+        container: qc.sty_ready-bistre-butterfly
+  QC.Ver:
+    repos:
+      github.com/EOSC-synergy/sqaaas-reporting-cookiecutter get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.randy-asparagus-fly.sh
+        container: qc.ver_foggy-amaranth-penguin
+timeout: 5400
